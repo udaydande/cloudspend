@@ -11,6 +11,10 @@ Built to practice data engineering fundamentals — extraction, transformation, 
 - Runs daily aggregations by service, region, and tag
 - Identifies top cost drivers and anomalies (spend spikes > 2 standard deviations)
 - Renders a Dash dashboard with: monthly trend, service breakdown, region heatmap, anomaly table
+  
+## Dashboard
+
+![cloudspend dashboard](./cloudspend-dashboard.png)
 
 ## Tech stack
 
