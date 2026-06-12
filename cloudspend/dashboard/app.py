@@ -99,13 +99,15 @@ def update(_n):
     else:
         anomaly_html = html.Table(
             [html.Tr([html.Th(c) for c in ["Date", "Service", "Cost", "Expected", "Z-Score"]])] +
-            [html.Tr([
-                html.Td(str(r["day"])[:10]),
-                html.Td(r["service"]),
-                html.Td(f"${r['cost']:,.2f}"),
-                html.Td(f"${r['rolling_mean']:,.2f}"),
-                html.Td(f"{r['z_score']:.1f}"),
-            ]) for _, r in anomalies.iterrows()],
+            [
+                html.Tr([
+                    html.Td(str(r["day"])[:10]),
+                    html.Td(r["service"]),
+                    html.Td(f"${r['cost']:,.2f}"),
+                    html.Td(f"${r['rolling_mean']:,.2f}"),
+                    html.Td(f"{r['z_score']:.1f}"),
+                ]) for _, r in anomalies.iterrows()
+            ],
             style={"borderCollapse": "collapse", "width": "100%", "fontSize": "0.875rem"},
         )
 
