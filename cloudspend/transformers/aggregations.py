@@ -6,8 +6,14 @@ import numpy as np
 import pandas as pd
 
 
+def _ensure_datetime(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["date"] = pd.to_datetime(df["date"])
+    return df
+
+
 def daily_by_service(df: pd.DataFrame) -> pd.DataFrame:
-    """Aggregate daily cost per service."""
+    df = _ensure_datetime(df)
     return (
         df.groupby([df["date"].dt.date, "service"])["cost"]
         .sum()
@@ -18,7 +24,7 @@ def daily_by_service(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def monthly_totals(df: pd.DataFrame) -> pd.DataFrame:
-    """Monthly total spend."""
+    df = _ensure_datetime(df)
     return (
         df.assign(month=df["date"].dt.to_period("M"))
         .groupby("month")["cost"]
@@ -29,7 +35,6 @@ def monthly_totals(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def top_services(df: pd.DataFrame, n: int = 10) -> pd.DataFrame:
-    """Top N services by total cost."""
     return (
         df.groupby("service")["cost"]
         .sum()
@@ -50,10 +55,6 @@ def region_breakdown(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def detect_anomalies(df: pd.DataFrame, z_threshold: float = 2.0) -> pd.DataFrame:
-    """
-    Flag daily cost entries that deviate more than z_threshold standard
-    deviations from the service's rolling 7-day mean.
-    """
     daily = daily_by_service(df)
     daily["day"] = pd.to_datetime(daily["day"])
 
