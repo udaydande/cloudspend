@@ -1,0 +1,8 @@
+pandas==2.2.0
+plotly==5.19.0
+dash==2.16.1
+SQLAlchemy==2.0.27
+numpy==1.26.4
+flake8==7.0.0
+pytest==8.0.1
+pytest-cov==4.1.0
