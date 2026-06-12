@@ -5,7 +5,6 @@ Run: python -m cloudspend.dashboard.app
 
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 from dash import Dash, dcc, html, Input, Output
 from sqlalchemy import text
 
