@@ -83,6 +83,29 @@ cloudspend/
 date,service,region,resource_id,usage_type,usage_amount,cost,currency,tag_env,tag_team
 2024-01-01,Compute,us-east-1,i-0abc123,BoxUsage:t3.medium,744,82.56,USD,prod,platform
 ```
+## Sample output
+
+```bash
+$ python -m cloudspend.pipeline --seed
+
+cloudspend — pipeline starting
+
+[1/3] Generating seed data...
+Wrote 6,112 records to data/seed_billing.csv
+
+[2/3] Extracting and loading...
+Extracted 6,112 records. Loading into DB...
+Done. 6,112 rows written.
+
+[3/3] Running SQL models...
+  ✓ stg_transactions
+  ✓ dim_merchants
+  ✓ fct_daily_spend
+  ✓ rpt_monthly_summary
+
+Pipeline complete. Launch dashboard with:
+  python -m cloudspend.dashboard.app
+```
 
 ## Running tests
 
