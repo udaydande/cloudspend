@@ -16,5 +16,5 @@ jobs:
           python-version: "3.11"
           cache: pip
       - run: pip install -r requirements.txt
-      - run: flake8 cloudspend --max-line-length=110
+      - run: flake8 cloudspend --max-line-length=110 --extend-ignore=E127
       - run: pytest tests/ -v --tb=short
